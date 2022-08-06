@@ -8,36 +8,58 @@ In the project directory, you can run:
 
 ### `yarn start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+# Pizza Fresh
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Projeto desenvolvido para entrega do Módulo 4 da Blue EdTech.
+<br/>
+Neste projeto você encontrará conceitos de autenticação, filtragem de buscas, documentação de projetos e bancos de dados relacionais.
 
-### `yarn test`
+## Pré-requisitos
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **Node** com versão superior ou igual que 16.15.0 - [Node Download](https://nodejs.org/pt-br/download/)
+- **NPM Ou YARN** com suas respesctivas versões atualizadas - [Npm Download](https://www.npmjs.com/package/download)
+- **Nest.js** com versão superior ou igual que 8.5.5 - [Nest Download](https://docs.nestjs.com/)
+- **PostgreSQL** com versão superior ou igual que 8.2.6 - [PostgreSQL Download](https://www.postgresql.org/download/)
 
-### `yarn build`
+## Instalação
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Clone esse projeto em seu computador com o comando (Chave SSH necessária):
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+$ git clone https://github.com/LyoDekken/pizza-react-ts.git
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Acesse a pasta do projeto:
 
-### `yarn eject`
+$ cd pizza-react-ts
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Instale as dependências com o seguinte comando:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+$ yarn
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Execução
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Após ter instalado as dependências, use o seguinte comando para rodar o projeto em um servidor local:
+
+$ yarn start
+
+## Funcionalidades
+
+## Autor
+
+- Humberto Henrique
+
+## Dúvidas
+
+Alguma dúvida, entre em contato pelos canai abaixo
+
+<div>
+<a href="https://www.linkedin.com/in/humbertohenrique/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a>
+<a href="https://www.instagram.com/oliiveira_hh/" target="_blank"><img src="https://img.shields.io/badge/-Instagram-%23E4405F?style=for-the-badge&logo=instagram&logoColor=white" target="_blank"></a>
+<a href = "mailto:lyodekken.dev@gmail.com"><img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white" target="_blank"></a>
+</div>
+
+## Licença
+
+- MIT License (MIT)
 
 ## Learn More
 
