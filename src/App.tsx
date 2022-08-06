@@ -1,10 +1,21 @@
-import Home from 'pages/Home';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { ThemeProvider } from 'styled-components';
+import theme from 'assets/styles/theme';
 import './App.css';
+import { BrowserRouter } from 'react-router-dom';
+import Router from './router';
+
+const queryClient = new QueryClient();
 
 export default function App() {
   return (
-    <div>
-      <Home />
-    </div>
+    <ThemeProvider theme={theme}>
+      <BrowserRouter>
+        <QueryClientProvider client={queryClient}>
+          <Router />
+        </QueryClientProvider>
+      </BrowserRouter>
+    </ThemeProvider>
   );
 }
+

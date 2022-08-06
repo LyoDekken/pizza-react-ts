@@ -2,7 +2,7 @@ import Menu from "components/Menu";
 import { DateTime } from "luxon";
 import { ReactComponent as Search } from "assets/icons/search.svg";
 import * as S from "./styles";
-import { RoutePath } from "types/routes";
+import { RoutePath } from "types/routes"; 
 import { navigationItems } from "data/navigation";
 
 export default function Home() {
