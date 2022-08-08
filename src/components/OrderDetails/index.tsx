@@ -1,6 +1,7 @@
 import ButtonToggle from "components/ButtonToggle";
 import ButtonLarge from "components/ButtonLarge";
 import OrderItemList from "components/OrderItemList";
+import OrderItem from "components/OrderItem";
 import * as S from "./styles";
 
 export default function OrderDetails() {
@@ -11,7 +12,7 @@ export default function OrderDetails() {
         <ButtonToggle active={true} value="Comer no Local" />
         <ButtonToggle active={false} value="P/ Viagem" />
         <ButtonToggle active={true} value="Delivery" />
-      </S.OrderDetailsButtonGroup>
+      </S.OrderDetailsButtonGroup>  
       <S.OrderDetailsList>
         <OrderItemList
           header={
@@ -21,7 +22,7 @@ export default function OrderDetails() {
               <h4>Preço</h4>
             </S.OrderDetailsListTitle>
           }
-          list={"Lista de Itens"}
+          list={<OrderItem />}
           footer={
             <S.OrderDetailsListFooter>
               <S.OrderDetailsListFooterRow>
