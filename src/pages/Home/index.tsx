@@ -7,6 +7,7 @@ import { navigationItems } from "data/navigation";
 import ProductItemList from "components/ProductItemList";
 import ProductItem from "components/ProductItem";
 import OrderDetails from "components/OrderDetails";
+import Overlay from "components/Overlay";
 
 export default function Home() {
   const dateDescription = DateTime.now().toLocaleString({
@@ -47,6 +48,9 @@ export default function Home() {
       <aside>
         <OrderDetails /> 
       </aside>
+      <Overlay>
+        
+      </Overlay>
     </S.Home>
   );
 }
