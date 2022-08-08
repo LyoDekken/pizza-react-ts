@@ -7,9 +7,10 @@ import Settings from "pages/Settings";
 export default function Router() {
   return (
     <Routes>
-      <Route path={RoutePath.LOGIN} element={<Login />} />
       <Route path={RoutePath.HOME} element={<Home />} />
+      <Route path={RoutePath.LOGIN} element={<Login />} />
       <Route path={RoutePath.SETTINGS} element={<Settings />} />
+      {/* <Route path={RoutePath.SETTINGS_PRODUCTS} element={<Login />} /> */}
     </Routes>
   );
 }
