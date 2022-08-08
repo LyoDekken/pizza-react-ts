@@ -1,4 +1,5 @@
 import { ReactComponent as Add } from "assets/icons/add.svg";
+import EditUser from "components/EditUser";
 import { HTMLAttributes } from "react";
 import * as S from "./styles";
 
@@ -6,7 +7,7 @@ type ManageUsersType = HTMLAttributes<HTMLDivElement>;
 
 type ManageUsersProps = {} & ManageUsersType;
 
-const ManageUsers = ({ ...props }: ManageUsersProps) => {
+export default function ManageUsers({ ...props }: ManageUsersProps){
   return (
     <S.ManageUsers {...props}>
       <S.ManageUsersTitle>Gerenciar Usuários</S.ManageUsersTitle>
@@ -25,7 +26,7 @@ const ManageUsers = ({ ...props }: ManageUsersProps) => {
           <S.EditForm type="password" placeholder="Confirmar Senha" />
           <S.EditForm type="url" placeholder="Imagem" />
         </S.ManageUsersContentAdd>
-        {"Componente EditUser"}
+        <EditUser />
       </S.ManageUsersContent>
       <S.ManageUsersActions>
         <S.ManageUsersActionsCancel>Cancelar</S.ManageUsersActionsCancel>
@@ -34,5 +35,3 @@ const ManageUsers = ({ ...props }: ManageUsersProps) => {
     </S.ManageUsers>
   );
 };
-
-export default ManageUsers;
