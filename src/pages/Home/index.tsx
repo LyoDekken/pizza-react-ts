@@ -5,13 +5,14 @@ import * as S from "./styles";
 import { RoutePath } from "types/routes";
 import { navigationItems } from "data/navigation";
 import ProductItemList from "components/ProductItemList";
+import ProductItem from "components/ProductItem";
 
 export default function Home() {
   const dateDescription = DateTime.now().toLocaleString({
     ...DateTime.DATE_SHORT,
     weekday: "long",
   });
-  
+
   return (
     <S.Home>
       <Menu active={RoutePath.HOME} navItems={navigationItems} />
@@ -36,7 +37,9 @@ export default function Home() {
             <b>Pizzas</b>
           </S.HomeProductTitle>
           <S.HomeProductList>
-            <ProductItemList></ProductItemList>
+            <ProductItemList>
+              <ProductItem />
+            </ProductItemList>
           </S.HomeProductList>
         </div>
       </S.HomeContent>
