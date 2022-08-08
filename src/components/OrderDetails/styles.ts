@@ -24,7 +24,7 @@ export const OrderDetailsTitle = styled.h2`
 export const OrderDetailsButtonGroup = styled.div`
   ${() => css`
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-around;
     gap: 10px;
     margin-top: 10px;
   `}
