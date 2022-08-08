@@ -4,6 +4,7 @@ import Home from "pages/Home/index";
 import Login from "pages/Login/index";
 import Settings from "pages/Settings";
 import ManageProducts from "components/ManageProducts";
+import ManageUsers from "components/ManageUsers";
 
 export default function Router() {
   return (
@@ -12,6 +13,7 @@ export default function Router() {
       <Route path={RoutePath.LOGIN} element={<Login />} />
       <Route path={RoutePath.SETTINGS} element={<Settings />} />
       <Route path={RoutePath.SETTINGS_PRODUCTS} element={<ManageProducts />} />
+      <Route path={RoutePath.SETTINGS_USERS} element={<ManageUsers />} />
     </Routes>
   );
 }
