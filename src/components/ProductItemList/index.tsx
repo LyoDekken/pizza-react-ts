@@ -1,6 +1,10 @@
 import * as S from "./styles";
 
-export default function ProductItemList() {
+interface ProductItemListProps{
+    children: React.ReactNode
+}
+
+export default function ProductItemList({children}: ProductItemListProps) {
   return (
     <section>
       <S.ProductItemListHeader>
@@ -12,7 +16,9 @@ export default function ProductItemList() {
           <option value="">Mesa</option>
         </S.ProductItemListHeaderSelect>
       </S.ProductItemListHeader>
-      <S.ProductItemList></S.ProductItemList>
+      <S.ProductItemList>
+        {children}
+      </S.ProductItemList>
     </section>
   );
 }
