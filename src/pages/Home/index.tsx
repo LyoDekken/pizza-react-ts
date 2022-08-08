@@ -8,6 +8,7 @@ import ProductItemList from "components/ProductItemList";
 import ProductItem from "components/ProductItem";
 import OrderDetails from "components/OrderDetails";
 import Overlay from "components/Overlay";
+import CheckoutSection from "components/CheckoutSection";
 
 export default function Home() {
   const dateDescription = DateTime.now().toLocaleString({
@@ -46,10 +47,10 @@ export default function Home() {
         </div>
       </S.HomeContent>
       <aside>
-        <OrderDetails /> 
+        <OrderDetails />
       </aside>
       <Overlay>
-        
+        <CheckoutSection />
       </Overlay>
     </S.Home>
   );
