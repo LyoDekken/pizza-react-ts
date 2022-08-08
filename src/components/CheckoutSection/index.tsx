@@ -23,7 +23,7 @@ export default function CheckoutSection() {
           </S.CheckoutSectionPaymentFormTitle>
           <S.PaymentForm>
             <S.PaymentFormCheckbox>
-              <CheckboxIcon active={false} value="Cartão" icon={<Card />} />
+              <CheckboxIcon active={true} value="Cartão" icon={<Card />} />
               <CheckboxIcon active={false} value="Dinheiro" icon={<Cash />} />
             </S.PaymentFormCheckbox>
             <>
