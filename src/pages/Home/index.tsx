@@ -58,8 +58,8 @@ export default function Home() {
         <OrderDetails />
       </aside>
       {/* <Overlay>
-                <CheckoutSection />
-            </Overlay> */}
+        <CheckoutSection />
+      </Overlay> */}
     </S.Home>
   );
 }
