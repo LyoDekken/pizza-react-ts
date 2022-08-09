@@ -2,19 +2,28 @@ import Menu from "components/Menu";
 import { RoutePath } from "types/routes";
 import { navigationItems } from "data/navigation";
 import * as S from "./styles";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import NavColumn from "components/NavColumn";
 
-export default function Settings () {
+export default function Settings() {
+  const navigate = useNavigate();
+  const handleNavigation = (path: RoutePath) => navigate(path);
+
   return (
     <S.Settings>
-      <Menu active={RoutePath.SETTINGS} navItems={navigationItems} />
+      <Menu
+        active={RoutePath.SETTINGS}
+        navItems={navigationItems}
+        onNavigate={handleNavigation}
+        onLogout={() => navigate(RoutePath.LOGIN)}
+      />
       <S.SettingsPage>
         <header>
           <S.SettingsPageHeaderTitle>Configurações</S.SettingsPageHeaderTitle>
         </header>
         <S.SettingsContent>
           <S.SettingsContentSidebar>
+            {/* Trecho precisa ser alterado posteriormente */}
             <NavColumn activeRoute={RoutePath.SETTINGS_TABLES} />
           </S.SettingsContentSidebar>
           <S.SettingsContentBox>
@@ -27,5 +36,4 @@ export default function Settings () {
       </S.SettingsPage>
     </S.Settings>
   );
-};
-
+}

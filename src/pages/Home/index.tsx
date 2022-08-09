@@ -7,8 +7,9 @@ import { navigationItems } from "data/navigation";
 import ProductItemList from "components/ProductItemList";
 import ProductItem from "components/ProductItem";
 import OrderDetails from "components/OrderDetails";
-import Overlay from "components/Overlay";
-import CheckoutSection from "components/CheckoutSection";
+// import Overlay from "components/Overlay";
+// import CheckoutSection from "components/CheckoutSection";
+import { useNavigate } from "react-router-dom";
 
 export default function Home() {
   const dateDescription = DateTime.now().toLocaleString({
@@ -16,16 +17,23 @@ export default function Home() {
     weekday: "long",
   });
 
+  const navigate = useNavigate();
+  const handleNavigation = (path: RoutePath) => navigate(path);
+
   return (
     <S.Home>
-      <Menu active={RoutePath.HOME} navItems={navigationItems} />
+      <Menu
+        active={RoutePath.HOME}
+        navItems={navigationItems}
+        onNavigate={handleNavigation}
+        onLogout={() => navigate(RoutePath.LOGIN)}
+      />
       <S.HomeContent>
         <header>
           <S.HomeHeaderDetails>
             <div>
               <S.HomeHeaderDetailsLogo>Pizza Fresh</S.HomeHeaderDetailsLogo>
               <S.HomeHeaderDetailsDate>
-                {/* Aqui ficará a data */}
                 {dateDescription}
               </S.HomeHeaderDetailsDate>
             </div>
@@ -49,9 +57,9 @@ export default function Home() {
       <aside>
         <OrderDetails />
       </aside>
-      <Overlay>
-        <CheckoutSection />
-      </Overlay>
+      {/* <Overlay>
+                <CheckoutSection />
+            </Overlay> */}
     </S.Home>
   );
 }
