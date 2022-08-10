@@ -1,24 +1,32 @@
 import * as S from "./styles";
+
 import logo from "assets/logo_patterns/logo.png";
 import ButtonLarge from "components/ButtonLarge";
 
 import { HTMLAttributes, useState } from "react";
+import { Dispatch, SetStateAction } from "react";
+import { toast } from "react-hot-toast";
 
 export type BoxLoginType = HTMLAttributes<HTMLDivElement>;
 
-export interface BoxLoginProps {
-  onSubmitData: (data: { nickname: string; password: string }) => void;
-  errorMessage: string;
-}
+// interface LoginProps {
+//   setLogged: Dispatch<SetStateAction<boolean>>;
+// }
 
-export default function BoxLogin({onSubmitData, errorMessage,}: BoxLoginProps) {
+export default function BoxLogin() {
 
-  const [nickname, setNickname] = useState("");
-  const [password, setPassword] = useState("");
-
-  const handleSubmit = (): void => {
-    const data = { nickname, password };
-    onSubmitData(data);
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  
+  const handleLogin = () => {
+    if (email === "admin" && password === "admin") {
+      toast.success("Login bem sucedido!");
+      console.log("Login bem sucedido!")
+      //setLogged(true);
+      return;
+    }
+    toast.error("Usuário ou senha incorretos.");
+    console.log("Usuário ou senha incorretos.")
   };
 
   return (
@@ -31,11 +39,11 @@ export default function BoxLogin({onSubmitData, errorMessage,}: BoxLoginProps) {
         <S.BoxLoginLogoImage src={logo} alt="Logo" />
       </S.BoxLoginLogo>
       <S.BoxLoginForm>
-        <input 
+        <input
           type="text"
-          placeholder="Nickname"
-          value={nickname}
-          onChange={({ target }) => setNickname(target.value)}
+          placeholder="E-mail"
+          value={email}
+          onChange={({ target }) => setEmail(target.value)}
         />
         <input
           type="password"
@@ -43,11 +51,8 @@ export default function BoxLogin({onSubmitData, errorMessage,}: BoxLoginProps) {
           value={password}
           onChange={({ target }) => setPassword(target.value)}
         />
-        <ButtonLarge value="Entrar" type="button" onClick={handleSubmit} />
+        <ButtonLarge value="Entrar" type="button" onClick={handleLogin} />
       </S.BoxLoginForm>
-      {Boolean(errorMessage.length) && (
-        <S.BoxLoginError>{errorMessage}</S.BoxLoginError>
-      )}
     </S.BoxLogin>
   );
 }
