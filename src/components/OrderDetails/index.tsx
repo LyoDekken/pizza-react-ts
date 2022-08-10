@@ -8,11 +8,22 @@ import { OrderItemType } from "types/OrderItemType";
 
 export type OrderDetailsType = HTMLAttributes<HTMLDivElement>;
 
-type OrderDetailsProps = {
+export interface OrderDetailsProps{
   orders: OrderItemType[];
-} & OrderDetailsType;
+} 
 
 export default function OrderDetails({ orders }: OrderDetailsProps) {
+
+  const price = orders
+    .map((i) => i.product.price * i.quantity)
+    .reduce((a, b) => a + b, 0);
+
+  const [priceState, setPriceState] = useState(price);
+  //useEffect responsável po virificar se atualização no valores do site, sem ele os valores não são alterados 
+  useEffect(() => {
+    setPriceState(price);
+  }, [orders, price]);
+
   return (
     <S.OrderDetails>
       <S.OrderDetailsTitle>Detalhes do Pedido</S.OrderDetailsTitle>
@@ -48,7 +59,7 @@ export default function OrderDetails({ orders }: OrderDetailsProps) {
             <S.OrderDetailsListFooter>
               <S.OrderDetailsListFooterRow>
                 <span>Subtotal</span>
-                <span>R$ 10.00</span>
+                <span>R$ {priceState.toFixed(2)}</span>
               </S.OrderDetailsListFooterRow>
               <ButtonLarge value="Continue para o pagamento" />
             </S.OrderDetailsListFooter>
