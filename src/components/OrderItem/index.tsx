@@ -1,24 +1,57 @@
-import * as S from "./styles";
 import { ReactComponent as Trash } from "assets/icons/trash.svg";
 import { ButtonHTMLAttributes, useEffect, useState } from "react";
-import { ProductResponse } from "types/Products";
+import { OrderItemType } from "types/OrderItemType";
+import { ProductResponse } from "types/api/product";
+import * as S from "./styles";
 
-export type DivType = ButtonHTMLAttributes<HTMLDivElement>;
+type DivType = ButtonHTMLAttributes<HTMLDivElement>;
 
 export type OrderItemProps = {
+  canDelete?: Boolean;
   product: ProductResponse;
   quantity: number;
   observation?: string;
-};
+  onRemoveItem?: () => void;
+  onItemChange: (item: OrderItemType) => void;
+} & DivType;
 
-export default function OrderItem({
+//Props que são funções, devolvem do filho para o pai
+//Props que não são funções, devolvem do pai para o filho
+const OrderItem = ({
   product,
   quantity,
   observation = "",
+  onRemoveItem,
+  onItemChange,
+  canDelete = true,
   ...props
-}: OrderItemProps) {
+}: OrderItemProps) => {
   const [quantityState, setQuantityState] = useState(quantity);
+  const [observationState, setObservationState] = useState(observation);
 
+  const handleObservation = (data: string) => {
+    setObservationState(data);
+  };
+
+  const handleQuantity = (data: number) => {
+    setQuantityState(data);
+  };
+
+  const handleChange = (quantityParam: number, observationParam: string) => {
+    onItemChange({
+      product: product,
+      quantity: quantityParam,
+      observation: observationParam,
+    });
+  };
+
+  useEffect(() => {
+    handleObservation(observation);
+  }, [observation]);
+
+  useEffect(() => {
+    handleQuantity(quantity);
+  }, [quantity]);
   return (
     <S.OrderItem {...props} role="listitem">
       <S.OrderItemLeft>
@@ -42,22 +75,32 @@ export default function OrderItem({
             value={quantityState}
             onChange={({ target }) => {
               setQuantityState(Number(target.value));
+              handleChange(Number(target.value), observationState);
             }}
           />
         </S.OrderItemLeftTop>
         <S.OrderItemLeftObservation
           type="text"
           placeholder="Observações do pedido"
+          value={observationState}
+          onChange={({ target }) => {
+            setObservationState(target.value);
+            handleChange(quantityState, target.value);
+          }}
         />
       </S.OrderItemLeft>
       <S.OrderItemRight>
         <S.OrderItemRightTotalPrice>
           R$ {Number(product.price * quantityState).toFixed(2)}
         </S.OrderItemRightTotalPrice>
-        <S.OrderItemRightTrash>
-          <Trash />
-        </S.OrderItemRightTrash>
+        {canDelete && (
+          <S.OrderItemRightTrash onClick={onRemoveItem}>
+            <Trash />
+          </S.OrderItemRightTrash>
+        )}
       </S.OrderItemRight>
     </S.OrderItem>
   );
-}
+};
+
+export default OrderItem;

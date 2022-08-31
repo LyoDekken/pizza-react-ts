@@ -1,25 +1,51 @@
-import ButtonToggle from "components/ButtonToggle";
 import ButtonLarge from "components/ButtonLarge";
-import OrderItemList from "components/OrderItemList";
+import ButtonToggle from "components/ButtonToggle";
 import OrderItem from "components/OrderItem";
-import * as S from "./styles";
+import OrderItemList from "components/OrderItemList";
 import { HTMLAttributes, useEffect, useState } from "react";
 import { OrderItemType } from "types/OrderItemType";
+import { OrderType } from "types/orderType";
+import * as S from "./styles";
 
-export type OrderDetailsType = HTMLAttributes<HTMLDivElement>;
+type OrderDetailsType = HTMLAttributes<HTMLDivElement>;
 
-export interface OrderDetailsProps{
+type OrderDetailsProps = {
   orders: OrderItemType[];
-} 
+  selectedTable?: number | string;
+  onProceedToPayment: () => void;
+  onOrdersChange: (orders: OrderItemType[]) => void;
+  onChangeActiveOrderType: (data: OrderType) => void;
+  onRemoveItem: (id: string) => void;
+  activeOrderType: OrderType;
+} & OrderDetailsType;
 
-export default function OrderDetails({ orders }: OrderDetailsProps) {
-
+const OrderDetails = ({
+  orders,
+  onProceedToPayment,
+  onOrdersChange,
+  onChangeActiveOrderType,
+  onRemoveItem,
+  activeOrderType,
+  selectedTable,
+}: OrderDetailsProps) => {
   const price = orders
     .map((i) => i.product.price * i.quantity)
     .reduce((a, b) => a + b, 0);
 
   const [priceState, setPriceState] = useState(price);
-  //useEffect responsável po virificar se atualização no valores do site, sem ele os valores não são alterados 
+
+  const disabledButton =
+    !Boolean(orders.length) ||
+    !Boolean(selectedTable) ||
+    selectedTable === "default";
+
+  const handleChange = (data: OrderItemType) => {
+    const list = orders.map((item) =>
+      item.product.id === data.product.id ? data : item
+    );
+    onOrdersChange(list);
+  };
+
   useEffect(() => {
     setPriceState(price);
   }, [orders, price]);
@@ -28,9 +54,21 @@ export default function OrderDetails({ orders }: OrderDetailsProps) {
     <S.OrderDetails>
       <S.OrderDetailsTitle>Detalhes do Pedido</S.OrderDetailsTitle>
       <S.OrderDetailsButtonGroup>
-        <ButtonToggle active={true} value="Comer no Local" />
-        <ButtonToggle active={false} value="P/ Viagem" />
-        <ButtonToggle active={true} value="Delivery" />
+        <ButtonToggle
+          onClick={() => onChangeActiveOrderType(OrderType.COMER_NO_LOCAL)}
+          active={activeOrderType === OrderType.COMER_NO_LOCAL}
+          value="Comer no Local"
+        />
+        <ButtonToggle
+          onClick={() => onChangeActiveOrderType(OrderType.PARA_VIAGEM)}
+          active={activeOrderType === OrderType.PARA_VIAGEM}
+          value="P/ Viagem"
+        />
+        <ButtonToggle
+          onClick={() => onChangeActiveOrderType(OrderType.DELIVERY)}
+          active={activeOrderType === OrderType.DELIVERY}
+          value="Delivery"
+        />
       </S.OrderDetailsButtonGroup>
       <S.OrderDetailsList>
         <OrderItemList
@@ -45,6 +83,8 @@ export default function OrderDetails({ orders }: OrderDetailsProps) {
             Boolean(orders.length) ? (
               orders.map((item, index) => (
                 <OrderItem
+                  onItemChange={handleChange}
+                  onRemoveItem={() => onRemoveItem(item.product.id)}
                   product={item.product}
                   quantity={item.quantity}
                   observation={item.observation}
@@ -61,11 +101,22 @@ export default function OrderDetails({ orders }: OrderDetailsProps) {
                 <span>Subtotal</span>
                 <span>R$ {priceState.toFixed(2)}</span>
               </S.OrderDetailsListFooterRow>
-              <ButtonLarge value="Continue para o pagamento" />
+              {(!Boolean(selectedTable) || selectedTable === "default") && (
+                <S.OrderDetailsListFooterWarning>
+                  Escolha a mesa primeiro
+                </S.OrderDetailsListFooterWarning>
+              )}
+              <ButtonLarge
+                onClick={onProceedToPayment}
+                disabled={disabledButton}
+                value="Continue para o pagamento"
+              />
             </S.OrderDetailsListFooter>
           }
         />
       </S.OrderDetailsList>
     </S.OrderDetails>
   );
-}
+};
+
+export default OrderDetails;

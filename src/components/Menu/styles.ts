@@ -61,7 +61,7 @@ const MenuItemModifiers = {
   `,
 };
 
-interface MenuItemStyled { active: boolean };
+type MenuItemStyled = { active: boolean };
 
 export const MenuItem = styled.div<MenuItemStyled>`
   ${({ theme, active }) => css`

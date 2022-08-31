@@ -1,21 +1,23 @@
-import * as S from "./styles";
 import React, { ButtonHTMLAttributes } from "react";
+import * as S from "./styles";
+
+type ButtonType = ButtonHTMLAttributes<HTMLButtonElement>;
 
 export type ButtonToggleProps = {
   value: string;
   active?: boolean;
-};
+} & ButtonType;
 
-export type ButtonType = ButtonHTMLAttributes<HTMLButtonElement>;
-
-export default function ButtonToggle({
+const ButtonToggle = ({
   value,
   active = false,
   ...props
-}: ButtonToggleProps) {
+}: ButtonToggleProps) => {
   return (
     <S.ButtonToggle {...props} active={active}>
       {value}
     </S.ButtonToggle>
   );
-}
+};
+
+export default ButtonToggle;

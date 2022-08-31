@@ -1,12 +1,11 @@
 import * as S from "./styles";
-import { ProductResponse } from "types/Products";
+import { ProductResponse } from "types/api/product";
 
-interface ProductItemProps {
+type ProductItemProps = {
   product: ProductResponse;
   onSelect: (data: ProductResponse) => void;
-}
-
-export default function ProductItem({ product, onSelect }: ProductItemProps) {
+};
+const ProductItem = ({ product, onSelect }: ProductItemProps) => {
   return (
     <S.ProductItem role="listitem" onClick={() => onSelect(product)}>
       <S.ProductItemImage
@@ -22,4 +21,6 @@ export default function ProductItem({ product, onSelect }: ProductItemProps) {
       </div>
     </S.ProductItem>
   );
-}
+};
+
+export default ProductItem;

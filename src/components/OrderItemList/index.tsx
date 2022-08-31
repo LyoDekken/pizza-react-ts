@@ -1,25 +1,29 @@
-import * as S from "./styles";
 import React, { HTMLAttributes } from "react";
+import * as S from "./styles";
 
-export interface OrderItemListProps {
+type DivType = HTMLAttributes<HTMLDivElement>;
+
+export type OrderItemListProps = {
   header?: React.ReactNode;
   footer?: React.ReactNode;
   list: React.ReactNode;
-}
+} & DivType;
 
-export type DivType = HTMLAttributes<HTMLDivElement>;
-
-export default function OrderItemList({
+const OrderItemList = ({
   header,
   list,
   footer,
   ...props
-}: OrderItemListProps) {
+}: OrderItemListProps) => {
   return (
     <div {...props}>
       {header && <S.OrderItemListTitle> {header} </S.OrderItemListTitle>}
+
       <S.OrderItemList role="listbox">{list}</S.OrderItemList>
+
       {footer && <footer> {footer} </footer>}
     </div>
   );
-}
+};
+
+export default OrderItemList;

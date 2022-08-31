@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import pattern from "assets/logo_patterns/pizza-pattern.png";
+import pattern from "assets/imgs/pizza-pattern.png";
 
 export const Login = styled.section`
   ${({ theme }) => css`

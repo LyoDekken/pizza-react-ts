@@ -1,8 +1,8 @@
-import logo from "assets/logo_patterns/logo.png";
-import { RoutePath } from "types/routes";
-import * as S from "./styles";
-import { NavItem } from "./types";
+import logo from "assets/imgs/logo.png";
 import { ReactComponent as Logout } from "assets/icons/logout.svg";
+import * as S from "./styles";
+import { RoutePath } from "types/routes";
+import { NavItem } from "./types";
 
 interface MenuProps {
   active: RoutePath;
@@ -10,19 +10,14 @@ interface MenuProps {
   onNavigate: (data: RoutePath) => void;
   onLogout: () => void;
 }
-
-export default function Menu({
-  active,
-  navItems,
-  onNavigate,
-  onLogout,
-}: MenuProps) {
+const Menu = ({ active, navItems, onNavigate, onLogout }: MenuProps) => {
   return (
     <S.Menu>
       <nav>
         <S.MenuLogo>
           <img src={logo} alt="Logo" />
         </S.MenuLogo>
+
         {navItems.map((item, index) => (
           <S.MenuItem key={`MenuItem-${index}`} active={item.path === active}>
             <S.MenuItemButton
@@ -39,4 +34,6 @@ export default function Menu({
       </S.MenuItemLogout>
     </S.Menu>
   );
-}
+};
+
+export default Menu;
