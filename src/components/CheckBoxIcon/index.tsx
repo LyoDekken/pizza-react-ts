@@ -1,20 +1,20 @@
 import React, { HTMLAttributes } from "react";
 import * as S from "./styles";
 
-export type DivType = HTMLAttributes<HTMLDivElement>;
+type DivType = HTMLAttributes<HTMLDivElement>;
 
-export interface CheckboxIconProps {
+export type CheckboxIconProps = {
   icon?: React.ReactNode;
   active?: boolean;
   value: string;
-}
+} & DivType;
 
-export default function CheckboxIcon({
+const CheckboxIcon = ({
   icon,
   value,
   active = false,
   ...props
-}: CheckboxIconProps) {
+}: CheckboxIconProps) => {
   return (
     <S.CheckboxIcon active={active} {...props}>
       {active && <S.CheckboxIconCheck />}
@@ -22,4 +22,6 @@ export default function CheckboxIcon({
       <div>{value}</div>
     </S.CheckboxIcon>
   );
-}
+};
+
+export default CheckboxIcon;

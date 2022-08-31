@@ -1,32 +1,22 @@
+import logo from "assets/imgs/logo.png";
+import ButtonLarge from "components/ButtonLarge";
+import { HTMLAttributes, useState } from "react";
 import * as S from "./styles";
 
-import logo from "assets/logo_patterns/logo.png";
-import ButtonLarge from "components/ButtonLarge";
+type BoxLoginType = HTMLAttributes<HTMLDivElement>;
 
-import { HTMLAttributes, useState } from "react";
-import { Dispatch, SetStateAction } from "react";
-import { toast } from "react-hot-toast";
+export type BoxLoginProps = {
+  onSubmitData: (data: { nickname: string; password: string }) => void;
+  errorMessage: string;
+} & BoxLoginType;
 
-export type BoxLoginType = HTMLAttributes<HTMLDivElement>;
+const BoxLogin = ({ onSubmitData, errorMessage }: BoxLoginProps) => {
+  const [nickname, setNickname] = useState("");
+  const [password, setPassword] = useState("");
 
-// interface LoginProps {
-//   setLogged: Dispatch<SetStateAction<boolean>>;
-// }
-
-export default function BoxLogin() {
-
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  
-  const handleLogin = () => {
-    if (email === "admin" && password === "admin") {
-      toast.success("Login bem sucedido!");
-      console.log("Login bem sucedido!")
-      //setLogged(true);
-      return;
-    }
-    toast.error("Usuário ou senha incorretos.");
-    console.log("Usuário ou senha incorretos.")
+  const handleSubmit = (): void => {
+    const data = { nickname, password };
+    onSubmitData(data);
   };
 
   return (
@@ -41,18 +31,24 @@ export default function BoxLogin() {
       <S.BoxLoginForm>
         <input
           type="text"
-          placeholder="E-mail"
-          value={email}
-          onChange={({ target }) => setEmail(target.value)}
+          placeholder="Nickname"
+          value={nickname}
+          onChange={({ target }) => setNickname(target.value)}
         />
+
         <input
           type="password"
           placeholder="Senha"
           value={password}
           onChange={({ target }) => setPassword(target.value)}
         />
-        <ButtonLarge value="Entrar" type="button" onClick={handleLogin} />
+        <ButtonLarge value="Entrar" type="button" onClick={handleSubmit} />
       </S.BoxLoginForm>
+      {Boolean(errorMessage.length) && (
+        <S.BoxLoginError>{errorMessage}</S.BoxLoginError>
+      )}
     </S.BoxLogin>
   );
-}
+};
+
+export default BoxLogin;

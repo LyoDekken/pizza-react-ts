@@ -1,8 +1,6 @@
 import styled, { css } from "styled-components";
 
-interface ButtonToggleStyled {
-  active: boolean;
-}
+type ButtonToggleStyled = { active: boolean };
 
 export const ButtonToggle = styled.button<ButtonToggleStyled>`
   ${({ theme, active }) => css`
@@ -10,6 +8,5 @@ export const ButtonToggle = styled.button<ButtonToggleStyled>`
     ${theme.mixins.bodyStyle()};
     font-weight: 600;
     ${active && theme.mixins.buttonToggle(true)};
-    font-size: 13.5px;
   `}
 `;

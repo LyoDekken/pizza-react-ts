@@ -15,7 +15,7 @@ export const ProductItemListHeaderTitle = styled.h1`
   `}
 `;
 
-export const ProductItemListHeaderSelect = styled.select` 
+export const ProductItemListHeaderSelect = styled.select`
   ${({ theme }) => css`
     ${theme.mixins.select()};
   `}

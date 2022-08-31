@@ -14,7 +14,7 @@ export const ButtonLarge = styled.button`
     cursor: pointer;
     ${theme.mixins.bodyStyle()};
     font-weight: 600;
-    //shadow: 0px 8px 8px 0px ${theme.colors.shadowColor};
+    box-shadow: 0px 8px 24px 0px ${theme.colors.shadowColor};
     &:disabled {
       color: ${theme.colors.textDark};
       background: ${theme.colors.baseBg1};

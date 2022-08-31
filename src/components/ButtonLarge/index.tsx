@@ -1,18 +1,14 @@
-import * as S from "./styles";
 import React, { ButtonHTMLAttributes } from "react";
+import * as S from "./styles";
 
 type ButtonType = ButtonHTMLAttributes<HTMLButtonElement>;
 
 type ButtonLargeProps = {
-    value: string;
+  value: string;
 } & ButtonType;
 
-//O ...props refere-se aos valores dentro do ButtonLargeProps
-//Ou seja {value, e type}
-
-export default function ButtonLarge({ value, ...props}: ButtonLargeProps) {
-  return <S.ButtonLarge {...props}>{value}</S.ButtonLarge>
-  //O value representa o que está dentro das "" de value
-  //
+const ButtonLarge = ({ value, ...props }: ButtonLargeProps) => {
+  return <S.ButtonLarge {...props}>{value}</S.ButtonLarge>;
 };
 
+export default ButtonLarge;

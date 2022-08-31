@@ -5,7 +5,7 @@ export const colors = {
     primaryColorOpacity: 'rgba(108, 234, 105, 0.4)',
 
     shadowColor: '#6CEA69',
-
+    
     baseBg1: "#252836",
     baseBg2: "#1F1D2B",
     baseForm: "#2D303E",
